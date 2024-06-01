@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+    <link rel="stylesheet" href="style.css">
+       
+</head>
+<body>
+    <div class="container">
+        <h2 id="form-title">Login</h2>
+        <form id="login-form">
+            <label for="login-username">Username:</label>
+            <input type="text" id="login-username" required>
+            
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" required>
+            
+            <input type="submit" value="Login">
+        </form>
+        
+        <form id="signup-form" class="hidden">
+            <label for="signup-username">Username:</label>
+            <input type="text" id="signup-username" required>
+            
+            <label for="signup-email">Email:</label>
+            <input type="email" id="signup-email" required>
+            
+            <label for="signup-password">Password:</label>
+            <input type="password" id="signup-password" required>
+            
+            <label for="signup-dob">Date of Birth:</label>
+            <input type="date" id="signup-dob" required>
+            
+            <input type="submit" value="Sign Up">
+        </form>
+        
+        <p id="toggle-text">Don't have an account? <a id="toggle-link">Sign up</a></p>
+    </div>
+
+    <script>
+        document.getElementById('toggle-text').addEventListener('click', function(event) {
+            var loginForm = document.getElementById('login-form');
+            var signupForm = document.getElementById('signup-form');
+            var formTitle = document.getElementById('form-title');
+            var toggleText = document.getElementById('toggle-text');
+            var toggleLink = document.getElementById('toggle-link');
+            
+            loginForm.classList.toggle('hidden');
+            signupForm.classList.toggle('hidden');
+
+            if (loginForm.classList.contains('hidden')) {
+                formTitle.textContent = 'Sign Up';
+                toggleText.innerHTML = 'Already have an account? <a id="toggle-link">Login</a>';
+            } else {
+                formTitle.textContent = 'Login';
+                toggleText.innerHTML = 'Don\'t have an account? <a id="toggle-link">Sign up</a>';
+            }
+        });
+
+        document.querySelector('.container').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formId = event.target.id;
+
+            if (formId === 'login-form') {
+                alert('Logged in!');
+            } else if (formId === 'signup-form') {
+                alert('Signed up!');
+            }
+        });
+    </script>
+</body>
+</html>
